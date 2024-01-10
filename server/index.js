@@ -53,3 +53,15 @@ app.patch('/books/:id', checkAuth, checkIsAdmin, bookUpdateValidation, handleVal
 app.get('/reviews/:bookId', ReviewController.getAll);
 app.post('/books/:id/reviews', checkAuth, reviewCreateValidation, handleValidationErrors, ReviewController.create);
 app.delete('/reviews/:id', checkAuth, ReviewController.remove);
+
+// FAVORITES ROUTES
+app.get('/favorites', checkAuth, FavoriteController.getFavorites);
+app.post('/favorites/add/:bookId', checkAuth, FavoriteController.addToFavorites);
+app.delete('/favorites/remove/:bookId', checkAuth, FavoriteController.removeFromFavorites);
+
+// FAQS ROUTES
+app.get('/faqs/:id', FAQController.getOneFAQ);
+app.get('/faqs', FAQController.getAllFAQs);
+app.post('/faqs', checkAuth, checkIsAdmin, faqCreateValidation, handleValidationErrors, FAQController.createFAQ);
+app.delete('/faqs/:id', checkAuth, checkIsAdmin, FAQController.deleteFAQ);
+app.patch('/faqs/:id', checkAuth, checkIsAdmin, FAQController.updateFAQ);
