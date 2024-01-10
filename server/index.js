@@ -76,3 +76,11 @@ app.delete('/news/:id', checkAuth, checkIsAdmin, NewsController.deleteNewsById);
 app.get('/feedbacks', FeedbackController.getAllFeedback);
 app.post('/feedbacks', checkAuth, feedbackCreateValidation, handleValidationErrors, FeedbackController.createFeedback);
 app.delete('/feedbacks/:id', checkAuth, FeedbackController.removeFeedback);
+
+app.listen(5000, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+  
+    console.log('Server is OK');
+});
