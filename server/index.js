@@ -24,3 +24,7 @@ import {
 const app = express();
 app.use(express.json());
 app.use(cors()); 
+
+// UPLOADS ROUTES
+app.post('/:bookId/upload', upload.single('file'), uploadFile);
+app.get('/:bookId/download', downloadFile);
