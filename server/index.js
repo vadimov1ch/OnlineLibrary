@@ -38,3 +38,13 @@ app.post('/auth/register', registerValidation, handleValidationErrors, UserContr
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
 app.put('/auth/update-password', checkAuth, UserController.updatePassword);
 app.delete('/users/:id', UserController.deleteUser);
+
+// BOOKS ROUTES
+app.get('/books/:id', BookController.getOne);
+app.get('/books', BookController.getAll);
+app.get('/search/title/:title', BookController.searchBooksByTitle);
+app.get('/search/author/:author', BookController.searchBooksByAuthor);
+app.get('/search/genre/:genre', BookController.searchBooksByGenre);
+app.post('/books', checkAuth, checkIsAdmin, bookCreateValidation, handleValidationErrors, BookController.create);
+app.delete('/books/:id', checkAuth, checkIsAdmin, BookController.remove);
+app.patch('/books/:id', checkAuth, checkIsAdmin, bookUpdateValidation, handleValidationErrors, BookController.update);
