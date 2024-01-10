@@ -28,3 +28,13 @@ app.use(cors());
 // UPLOADS ROUTES
 app.post('/:bookId/upload', upload.single('file'), uploadFile);
 app.get('/:bookId/download', downloadFile);
+
+// USER ROUTES
+app.get('/users', UserController.getAllUsers);
+app.get('/admins', UserController.getAllAdmins);
+app.get('/auth/me', checkAuth, UserController.getMe);
+app.post('/auth/adminregister', registerValidation, handleValidationErrors, UserController.registerAsAdmin);
+app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register);
+app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
+app.put('/auth/update-password', checkAuth, UserController.updatePassword);
+app.delete('/users/:id', UserController.deleteUser);
