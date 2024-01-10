@@ -65,3 +65,14 @@ app.get('/faqs', FAQController.getAllFAQs);
 app.post('/faqs', checkAuth, checkIsAdmin, faqCreateValidation, handleValidationErrors, FAQController.createFAQ);
 app.delete('/faqs/:id', checkAuth, checkIsAdmin, FAQController.deleteFAQ);
 app.patch('/faqs/:id', checkAuth, checkIsAdmin, FAQController.updateFAQ);
+
+// NEWS ROUTES
+app.get('/news/:id', NewsController.getOneNews);
+app.get('/news', NewsController.getAllNews);
+app.post('/news', checkAuth, newsCreateValidation, checkIsAdmin, NewsController.createNews);
+app.delete('/news/:id', checkAuth, checkIsAdmin, NewsController.deleteNewsById);
+
+// FEEDBACKS ROUTES
+app.get('/feedbacks', FeedbackController.getAllFeedback);
+app.post('/feedbacks', checkAuth, feedbackCreateValidation, handleValidationErrors, FeedbackController.createFeedback);
+app.delete('/feedbacks/:id', checkAuth, FeedbackController.removeFeedback);
