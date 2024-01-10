@@ -48,3 +48,8 @@ app.get('/search/genre/:genre', BookController.searchBooksByGenre);
 app.post('/books', checkAuth, checkIsAdmin, bookCreateValidation, handleValidationErrors, BookController.create);
 app.delete('/books/:id', checkAuth, checkIsAdmin, BookController.remove);
 app.patch('/books/:id', checkAuth, checkIsAdmin, bookUpdateValidation, handleValidationErrors, BookController.update);
+
+// REVIEWS ROUTES
+app.get('/reviews/:bookId', ReviewController.getAll);
+app.post('/books/:id/reviews', checkAuth, reviewCreateValidation, handleValidationErrors, ReviewController.create);
+app.delete('/reviews/:id', checkAuth, ReviewController.remove);
